@@ -15,7 +15,7 @@ import { Server, Socket } from 'socket.io';
     methods: ['GET', 'POST'],
     origin: ['http://localhost:3000'],
   },
-  transports: ['websocket'],
+  transports: ['polling','websocket'],
 })
 export class AppGateway
   implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect
