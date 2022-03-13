@@ -7,5 +7,21 @@ You can run the application in development mode with the command:
 
 ```Powershell
 #Run the Server
-yarn start
+
+cd backend
+
+docker compose up
+
+npm i
+
+npm run start:dev
+
+cd ..
+
+cd chat-web
+
+npm i
+
+npm run start
+
 ```
