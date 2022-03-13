@@ -25,3 +25,7 @@ npm i
 npm run start
 
 ```
+
+##OBS
+
+.env is commited because  the docker compose will up the pg db, so you have the db up and .env configurations to it
