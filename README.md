@@ -4,4 +4,6 @@ Construa um back-end onde o usuário precise se autenticar para enviar e receber
 
 ## Running 🔥
 
-``` Docker compose up 
+```Powershell
+Docker compose up 
+```
