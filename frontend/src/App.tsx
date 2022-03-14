@@ -11,6 +11,7 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Home from "./components/Home";
 import Chat from "./components/Chat/Chat";
+import { AuthProvider } from "./context/AuthContext";
 
 import EventBus from "./common/EventBus";
 
@@ -37,6 +38,7 @@ const App: React.FC = () => {
   };
 
   return (
+    <AuthProvider>
     <div>
       <nav className="navbar navbar-expand navbar-dark bg-dark">
         <Link to={"/"} className="navbar-brand">
@@ -98,6 +100,7 @@ const App: React.FC = () => {
         </Switch>
       </div>
     </div>
+    </AuthProvider>
   );
 };
 

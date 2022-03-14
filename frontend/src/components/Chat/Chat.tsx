@@ -25,8 +25,6 @@ const socketOptions = {
         },
     },
 };
-console.log(socketOptions);
-
 
 const socket = io('http://localhost:3001', socketOptions);
 

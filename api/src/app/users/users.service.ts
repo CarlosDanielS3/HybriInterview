@@ -46,7 +46,6 @@ export class UsersService {
         throw new HttpException('Email is already in use', HttpStatus.CONFLICT);
       }
     } catch (error) {
-      console.log(error)
       throw new HttpException('Email is already in use', HttpStatus.CONFLICT);
     }
   }
@@ -111,7 +110,6 @@ export class UsersService {
         throw new HttpException('Login was not successfull, wrong credentials', HttpStatus.UNAUTHORIZED);
       }
     } catch (err){
-      console.log(err)
       throw new HttpException('User not found', HttpStatus.NOT_FOUND);
     }
   }

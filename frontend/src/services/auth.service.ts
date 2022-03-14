@@ -17,12 +17,11 @@ export const login = (email: string, password: string) => {
       password,
     })
     .then((response) => {
-      localStorage.setItem('user', JSON.stringify(response));
-      console.log('RESPONSEEEEEEEE',response);
-      if (response.data.token) {
-        console.log(response.data.token);
-        localStorage.setItem('user', JSON.stringify(response.data));
-        console.log(localStorage)
+      if (response.data.access_token) { 
+        localStorage.setItem(
+          'user',
+          JSON.stringify(response.data.access_token)
+        );
       }
 
       return response.data;
@@ -34,7 +33,6 @@ export const logout = () => {
 };
 
 export const getCurrentUser = () => {
-  console.log(localStorage);
   const userStr = localStorage.getItem("user");
   if (userStr) return JSON.parse(userStr);
 

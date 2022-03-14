@@ -42,15 +42,16 @@ export class AppGateway
 
   async handleConnection(socket: Socket) {
     try {
-      const decodedToken = await this.authService.verifyJwt(
-        socket.handshake.headers.authorization,
-      );
+      const tokenArray: string[] =
+      socket.handshake.headers.authorization.split(' ');
+      const decodedToken = await this.authService.verifyJwt(tokenArray[1]);
+
       const user = await this.userService.findOneOrFail(decodedToken.sub);
+
       if (!user) {
         return this.disconnect(socket);
       } else this.logger.log(`Client connected: ${socket.id}`);
     } catch(error) {
-      console.log(error)
       return this.disconnect(socket);
     }
   }
