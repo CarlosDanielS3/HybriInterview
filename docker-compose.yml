@@ -1,0 +1,59 @@
+version: '3.8'
+services:
+
+ api:
+  build:
+    dockerfile: Dockerfile
+    context: ./api
+    # Only build development stage from Dockerfile
+    target: development
+  # Mount our host dir to the docker container
+  # Mount api directory (./api) to (:) docker container (/carlos/src/app)
+  # Reflect File changes from host to container
+  volumes:
+    - ./api:/carlos/src/app
+    - /carlos/src/app/node_modules/
+  # RUN in debug mode: npm run start:debug --> Also start your vscode debugger
+  # Run in dev mode: npm run start:dev
+  command: npm run start:debug
+  depends_on: 
+    - postgres
+  environment:
+      DATABASE_URL: postgres://postgres:postgres@postgres:5432/postgres
+      PORT: 3001
+      MODE: DEV
+      RUN_MIGRATIONS: true
+      JWT_SECRET_KEY: kzVo2phORLa9fi3gAZOxtkjGVVfgnptRpGdCsBy2qRM=
+  ports:
+    - 3001:3001
+    - 9229:9229
+
+ frontend:
+  build:
+   dockerfile: Dockerfile
+   context: ./frontend
+   target: development
+  command: npm run start
+  environment:
+      PORT: 8081
+  volumes:
+   - ./frontend:/carlos/frontend
+    - /carlos/frontend/node_modules
+  ports:
+    - 8081:8081
+  links:
+    - api
+
+ postgres:
+    image: postgres:14.1-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - '5432:5432'
+    volumes: 
+      - db:/var/lib/postgresql/data
+volumes:
+  db:
+    driver: local
