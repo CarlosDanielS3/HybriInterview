@@ -11,6 +11,7 @@ Docker compose up
 
 ## Routes
 
-localhost:8081/register
-localhost:8081/login
-localhost:8081/chat
+### localhost:8081/register
+
+### localhost:8081/login
+### localhost:8081/chat
