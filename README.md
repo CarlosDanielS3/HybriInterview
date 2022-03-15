@@ -7,3 +7,10 @@ Construa um back-end onde o usuário precise se autenticar para enviar e receber
 ```Powershell
 Docker compose up 
 ```
+
+
+## Routes
+
+localhost:8081/register
+localhost:8081/login
+localhost:8081/chat
