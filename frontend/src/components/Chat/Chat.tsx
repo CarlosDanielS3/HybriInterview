@@ -118,7 +118,7 @@ const Chat: React.FC = () => {
                                         </span>
 
                                         <p>{message.text}                                              
-                                            <span style={{marginLeft: '10px'}}>
+                                            <span style={{ marginLeft: '10px', display: message.like ? "block" : "none"}}>
                                                 <FormControlLabel checked={message.like} onChange={() => {return false}}
                                                 control={<Checkbox icon={<FavoriteBorder />}
                                                     checkedIcon={<Favorite />}
