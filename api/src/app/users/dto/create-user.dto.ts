@@ -4,8 +4,6 @@ import { RegExHelper } from 'src/helpers/regex.helper';
 
 export class CreateUserDto {
   @IsNotEmpty()
-  name: string;
-  @IsNotEmpty()
   @IsEmail()
   email: string;
 

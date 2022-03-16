@@ -9,7 +9,6 @@ export class UserHelperService {
   createUserDtoToEntity(createUserDto: CreateUserDto): UserI {
     return {
       email: createUserDto.email,
-      name: createUserDto.name,
       password: createUserDto.password
     };
   }

@@ -1,8 +1,8 @@
 {
   "name": "nestjs-jwt-app",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "hybri interview",
+  "author": "Carlos Daniel",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {

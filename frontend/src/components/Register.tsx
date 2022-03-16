@@ -10,22 +10,11 @@ const Register: React.FC = () => {
   const [message, setMessage] = useState<string>("");
 
   const initialValues: IUser = {
-    name: "",
     email: "",
     password: "",
   };
 
   const validationSchema = Yup.object().shape({
-    name: Yup.string()
-      .test(
-        "len",
-        "The name must be between 3 and 20 characters. ",
-        (val: any) =>
-          val &&
-          val.toString().length >= 3 &&
-          val.toString().length <= 20
-      )
-      .required("This field is required!"),
     email: Yup.string()
       .email("This is not a valid email.")
       .required("This field is required!"),
@@ -42,9 +31,9 @@ const Register: React.FC = () => {
   });
 
   const handleRegister = (formValue: IUser) => {
-    const { name, email, password } = formValue;
+    const { email, password } = formValue;
 
-    register(name, email, password).then(
+    register( email, password).then(
       () => {
         setMessage('Usuário cadastrado com sucesso!');
         setSuccessful(true);
@@ -80,16 +69,6 @@ const Register: React.FC = () => {
             {!successful && (
               <div>
                 <div className="form-group">
-                  <label htmlFor="name"> Name </label>
-                  <Field name="name" type="text" className="form-control" />
-                  <ErrorMessage
-                    name="name"
-                    component="div"
-                    className="alert alert-danger"
-                  />
-                </div>
-
-                <div className="form-group">
                   <label htmlFor="email"> Email </label>
                   <Field name="email" type="email" className="form-control" />
                   <ErrorMessage
@@ -98,7 +77,6 @@ const Register: React.FC = () => {
                     className="alert alert-danger"
                   />
                 </div>
-
                 <div className="form-group">
                   <label htmlFor="password"> Password </label>
                   <Field

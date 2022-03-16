@@ -3,7 +3,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { FindConditions, FindOneOptions, Repository } from 'typeorm';
 import { AuthService } from '../auth/auth.service';
 import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
 import { UserI } from './dto/user.interface';
 import { UsersEntity } from './users.entity';
 
@@ -17,7 +16,7 @@ export class UsersService {
 
   async findAll(): Promise<UsersEntity[]> {
     return await this.usersRepository.find({
-      select: ['id', 'name', 'email'],
+      select: ['id', 'email'],
     });
   }
 
@@ -50,12 +49,6 @@ export class UsersService {
     }
   }
 
-  async update(id: string, user_data: UpdateUserDto): Promise<UsersEntity> {
-    const user = await this.findOneOrFail({ id });
-    this.usersRepository.merge(user, user_data);
-    return await this.usersRepository.save(user);
-  }
-
   async destroy(id: string): Promise<void> {
     await this.findOneOrFail({ id });
     await this.usersRepository.softDelete(id);
@@ -77,7 +70,7 @@ export class UsersService {
   private async findByEmail(email: string): Promise<CreateUserDto> {
     return this.usersRepository.findOne(
       { email },
-      { select: ['id', 'email', 'name', 'password'] },
+      { select: ['id', 'email', 'password'] },
     );
   }
 

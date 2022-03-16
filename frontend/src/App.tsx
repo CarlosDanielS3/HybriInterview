@@ -9,7 +9,6 @@ import IUser from './types/user.type';
 
 import Login from "./components/Login";
 import Register from "./components/Register";
-import Home from "./components/Home";
 import Chat from "./components/Chat/Chat";
 import { AuthProvider } from "./context/AuthContext";
 
@@ -44,28 +43,12 @@ const App: React.FC = () => {
         <Link to={"/"} className="navbar-brand">
           Hybri
         </Link>
-        <div className="navbar-nav mr-auto">
-          <li className="nav-item">
-            <Link to={"/home"} className="nav-link">
-              Home
-            </Link>
-          </li>
-
-
-          {currentUser && (
-            <li className="nav-item">
-              <Link to={"/user"} className="nav-link">
-                User
-              </Link>
-            </li>
-          )}
-        </div>
 
         {currentUser ? (
           <div className="navbar-nav ml-auto">
             <li className="nav-item">
               <Link to={"/chat"} className="nav-link">
-                {currentUser.name}
+                  Chat
               </Link>
             </li>
             <li className="nav-item">
@@ -93,7 +76,6 @@ const App: React.FC = () => {
 
       <div className="container mt-3">
         <Switch>
-          <Route exact path={["/", "/home"]} component={Home} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/chat" component={Chat} />

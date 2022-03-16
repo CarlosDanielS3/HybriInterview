@@ -27,7 +27,7 @@ ENV NODE_ENV=${NODE_ENV}
 # Set work dir
 WORKDIR /carlos/src/app
 
-COPY --from=development /thomas/src/app/ .
+COPY --from=development /carlos/src/app/ .
 
 EXPOSE 3001
 

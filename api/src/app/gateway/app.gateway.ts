@@ -36,6 +36,11 @@ export class AppGateway
     this.server.emit('msgToClient', payload, client.id);
   }
 
+  @SubscribeMessage('likeButtonServer')
+  handleEvent(client: Socket, payload: string): void {
+    this.server.emit('likeButtonClient', payload, client.id);
+  }
+
   afterInit(server: Server) {
     this.logger.log('Init');
   }
@@ -43,7 +48,7 @@ export class AppGateway
   async handleConnection(socket: Socket) {
     try {
       const tokenArray: string[] =
-      socket.handshake.headers.authorization.split(' ');
+        socket.handshake.headers.authorization.split(' ');
       const decodedToken = await this.authService.verifyJwt(tokenArray[1]);
 
       const user = await this.userService.findOneOrFail(decodedToken.sub);
@@ -51,7 +56,7 @@ export class AppGateway
       if (!user) {
         return this.disconnect(socket);
       } else this.logger.log(`Client connected: ${socket.id}`);
-    } catch(error) {
+    } catch (error) {
       return this.disconnect(socket);
     }
   }
